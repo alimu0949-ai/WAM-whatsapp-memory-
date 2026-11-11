@@ -1,17 +1,20 @@
 {
   "name": "wam-backend",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test"
+    "dev": "node --watch src/server.js"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
     "express": "^4.19.2",
-    "pg": "^8.12.0"
+    "pg": "^8.12.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
   }
 }
