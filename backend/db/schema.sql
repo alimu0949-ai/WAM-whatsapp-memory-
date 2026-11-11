@@ -53,3 +53,19 @@ CREATE TABLE IF NOT EXISTS media_files (
   size_bytes bigint NOT NULL DEFAULT 0,
   created_at timestamptz NOT NULL DEFAULT now()
 );
+CREATE TABLE IF NOT EXISTS memories (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    contact_id UUID NOT NULL REFERENCES contacts(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    category TEXT DEFAULT 'general',
+    source_message_id BIGINT REFERENCES messages(id) ON DELETE SET NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_memories_contact
+ON memories(contact_id);
+
+CREATE INDEX IF NOT EXISTS idx_memories_category
+ON memories(category);
